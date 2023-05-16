@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>About Program Kampus Merdeka Clasification</title>
+
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/favicon.ico') }}"
+      type="image/x-icon"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- CSS Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#9EB066",
+              secondary: "#D4ED8A",
+              lgreen: "#E6EDD1",
+              card: "#424141",
+              btn: "#6A6E60",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-white">
+    <nav class="bg-primary">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="{{ url_for('index') }}">
+                <img
+                  class="h-8 w-8"
+                  src="{{ url_for('static', filename='img/logo.png') }}"
+                  class="w-14"
+                  alt="Logo"
+                />
+              </a>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-10 flex items-baseline space-x-4">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a
+                  href="{{ url_for('about') }}"
+                  class="bg-btn text-white rounded-md px-3 py-2 text-sm font-medium"
+                  aria-current="page"
+                  >About</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="p-3">
+      <div
+        class="grid grid-cols-1 gap-2 text-center py-10 w-full text-2xl title"
+      >
+        <div class="flex items-center justify-center">
+          <img
+            src="{{ url_for('static', filename='img/logo.png') }}"
+            alt="logo analisis sentiment"
+            class="w-24"
+          />
+        </div>
+        <h1 class="text-center font-bold">
+          About Klasifikasi Analisis Sentimen
+        </h1>
+      </div>
+      <div class="text-center px-20 leading-7">
+        <p>
+          Program Kampus Merdeka adalah program yang diluncurkan oleh
+          Kementerian Pendidikan dan Kebudayaan Republik Indonesia dengan tujuan
+          untuk memberikan kesempatan bagi mahasiswa dan dosen untuk belajar di
+          luar negeri. Dalam rangka memantau respon dan pengalaman peserta
+          program, kami menggunakan algoritma naive bayes untuk menganalisis
+          sentimen peserta terkait program Kampus Merdeka.
+        </p>
+        <p>
+          Algoritma naive bayes adalah sebuah algoritma klasifikasi yang
+          memanfaatkan teorema Bayes untuk memprediksi kelas atau label dari
+          suatu data berdasarkan atribut-atribut yang dimilikinya. Dalam konteks
+          analisis sentimen, algoritma naive bayes dapat digunakan untuk
+          memprediksi apakah suatu teks memiliki sentimen positif (Mendukung)
+          atau negatif (Tidak Mendukung).
+        </p>
+        <p>
+          Dalam implementasi analisis sentimen pada program Kampus Merdeka, data
+          yang digunakan adalah hasil survei yang dilakukan terhadap peserta
+          program. Data tersebut kemudian diolah dan diproses menggunakan
+          algoritma naive bayes untuk mendapatkan hasil analisis sentimen.
+        </p>
+      </div>
+    </div>
+    <footer class="bg-primary w-full font-medium">
+      <div class="py-3 bottom-0 flex justify-center space-x-2">
+        <p>&copy; 2023 Kristina Rajagukguk. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

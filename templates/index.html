@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Program Kampus Merdeka Clasification</title>
+
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/favicon.ico') }}"
+      type="image/x-icon"
+    />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <!-- CSS Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#9EB066",
+              secondary: "#D4ED8A",
+              lgreen: "#E6EDD1",
+              card: "#424141",
+              btn: "#6A6E60",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="font-medium">
+    <nav class="bg-primary">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="{{ url_for('index') }}">
+                <img
+                  class="h-8 w-8"
+                  src="{{ url_for('static', filename='img/logo.png') }}"
+                  class="w-14"
+                  alt="Logo"
+                />
+              </a>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-10 flex items-baseline space-x-4">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a
+                  href="{{ url_for('about') }}"
+                  class="bg-btn text-white rounded-md px-3 py-2 text-sm font-medium"
+                  aria-current="page"
+                  >About</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="p-3">
+      <div
+        class="grid grid-cols-1 gap-2 text-center py-10 w-full text-2xl title"
+      >
+        <div class="flex items-center justify-center">
+          <img
+            src="{{ url_for('static', filename='img/logo.png') }}"
+            alt="logo analisis sentiment"
+            class="w-24"
+          />
+        </div>
+        <h1 class="text-center font-bold uppercase">
+          Klasifikasi Analisis Sentimen
+        </h1>
+      </div>
+      <div>
+        <form
+          method="POST"
+          autocomplete="off"
+          action="{{ url_for('predict') }}"
+          class="grid grid-cols-1 md:flex px-4 md:px-20 gap-2"
+        >
+          <input
+            type="text"
+            name="kalimat"
+            required
+            class="py-3 px-3 w-full border-1 outline outline-1 outline-card rounded-lg"
+            placeholder="Masukkan kalimat dalam bahasa indonesia"
+          />
+          <input
+            type="submit"
+            value="Submit"
+            class="py-3 px-6 bg-btn text-white rounded-lg"
+          />
+        </form>
+      </div>
+      {% if predicted %}
+      <div class="pt-20 grid grid-cols-1 md:grid-cols-2 gap-5 px-4 md:px-20">
+        {% for p in predicted %}
+        <div class="bg-card w-full rounded py-4 px-2 items-center">
+          <div class="text-center">
+            <p class="text-bold text-white">Kalimat Asli :</p>
+            <p class="text-sm text-secondary">{{p.tweet}}</p>
+            <p class="text-bold text-white">Preprocessed dari Kalimat :</p>
+            <p class="text-sm text-secondary">{{p.tokens}}</p>
+          </div>
+        </div>
+        <div class="bg-card w-full rounded py-4 px-2 items-center">
+          <div class="text-center">
+            <p class="text-bold text-white">Probability Sentimen</p>
+            <p class="text-sm text-secondary">{{p.probability}}</p>
+            <p class="text-bold text-white">Klasifikasi Sentimen</p>
+            <p class="text-sm text-secondary">{{p.label}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <footer class="bg-primary w-full">
+      <div class="py-3 bottom-0 flex justify-center space-x-2">
+        <p>&copy; 2023 Kristina Rajagukguk. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
